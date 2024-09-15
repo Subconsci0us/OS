@@ -1,0 +1,9 @@
+The provided code cannot be directly implemented in xv6 due to several key limitations when compared to more modern Unix-like systems like Linux.
+
+First, it uses execvp(), which xv6 does not support. In xv6, you must use exec() and explicitly provide the full path to the executable, as it does not search through the PATH. 
+Additionally, the code depends on wait(&status) to retrieve the exit status of child processes, but xv6’s wait() does not return a status, and functions like WEXITSTATUS() are unavailable. 
+Another challenge is the use of perror() for error messages, since xv6 lacks support for errno and does not provide perror(), requiring error reporting to be done through basic printf() 
+statements. The code also uses dup2() to manage file descriptors, but xv6 lacks this function, so you must use a combination of dup() and close() to achieve similar behavior. 
+Moreover, hardcoded paths like /bin/ls and /usr/bin/tr may not exist in xv6’s minimal filesystem, where commands are typically organized under /bin. Finally, xv6 lacks much of the C 
+standard library, meaning functions like fprintf() and exit() with status arguments are unavailable. Instead, you’ll need to use simpler alternatives such as printf() and exit() without 
+status codes. These differences in system calls, process handling, and library support make the code incompatible with xv6.

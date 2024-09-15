@@ -1,0 +1,7 @@
+Pipes offer at least three advantages over temporary files in this scenario. 
+
+First, pipes handle their own cleanup automatically, whereas with file redirection, the shell must manually delete temporary files like /tmp/xyz once the process is complete
+
+Second, pipes can transfer data of any length, while file redirection depends on having sufficient disk space to store all the data. 
+
+Third, pipes enable parallel execution of different stages in a pipeline, whereas the file-based approach requires the first program to fully complete before the second can begin.
